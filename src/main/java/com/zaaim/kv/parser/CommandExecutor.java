@@ -86,7 +86,11 @@ public class CommandExecutor {
         }
 
         String key = command.get(1);
-        KeyValuePair entry = Cache.getCache().stream().filter(item -> item.getKey().equals(key)).toList().get(0);
+        List<KeyValuePair> listEntry = Cache.getCache().stream().filter(item -> item.getKey().equals(key)).toList();
+        if (listEntry!=null && listEntry.size() > 1) {
+            return "-Err multiple entries found for key (" + key + ")\r\n";
+        }
+        KeyValuePair entry =  listEntry.getFirst();
         boolean hasExpired = false;
 
         if (entry.getExpiryTime() != null) {
