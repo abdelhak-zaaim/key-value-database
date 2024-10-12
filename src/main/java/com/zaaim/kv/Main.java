@@ -24,6 +24,7 @@ public class Main {
 
         try {
             String dbFilePath = config.get("dir") + "/" + config.get("dbfilename");
+            System.out.println("DB File Path: " + dbFilePath);
             File f = new File(dbFilePath);
 
             if (f.exists()) {

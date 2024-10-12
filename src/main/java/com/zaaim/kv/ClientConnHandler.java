@@ -40,6 +40,7 @@ public class ClientConnHandler implements Runnable {
                 OutputStream outputStream = socket.getOutputStream();
 
                 if (command instanceof RESPArray) {
+                    System.out.println("Command: " + command);
                     String argument = new CommandExecutor(socket, writer, config).execute((RESPArray) command);
                     if (argument == null) {
                         continue;
